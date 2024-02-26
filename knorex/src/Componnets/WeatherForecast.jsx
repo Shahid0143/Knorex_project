@@ -33,7 +33,7 @@ const WeatherForecast = () => {
 
   return (
     <div>
-      <h2>Weather Forecast for {city}</h2>
+      <h2>Weather Forecast for {city} for next 3 days</h2>
       <p>Description: {forecastData.weather[0].description} &#9729;</p>
       <p>Temperature: {forecastData.main.temp}°C &#9788;</p>
       <p>Temperature: {forecastData.main.temp_max}°C &#9788;</p>
