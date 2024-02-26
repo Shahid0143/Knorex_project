@@ -1,0 +1,39 @@
+.weather-forecast-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  background-color: #f0f0f0;
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-forecast-select {
+  margin-bottom: 20px;
+}
+
+.weather-forecast-select label {
+  margin-right: 10px;
+}
+
+.weather-forecast-select select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.weather-forecast-details {
+  margin-top: 20px;
+}
+
+.weather-forecast-details h2 {
+  margin-bottom: 10px;
+}
+
+.weather-forecast-details p {
+  margin-bottom: 5px;
+}
