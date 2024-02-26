@@ -1,15 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const DropdownMenu = ({ cities, onSelectCity }) => {
+const DropdownMenu = ({ cities }) => {
   return (
-    <select onChange={(e) => onSelectCity(e.target.value)}>
+    <div>
       {cities.map((city, index) => (
-        <option className="city-name" key={index} value={city}>
-          {city}
-        </option>
+        <div key={index}>
+          <Link to={`/forecast/${city}`}>{city}</Link>
+        </div>
       ))}
-    </select>
-    
+    </div>
   );
 };
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import DropdownMenu from "./Componnets/DropdownMenu";
-// import DropdownMenu from "./components/Dropdown";
-// import WeatherForecast from "./components/WeatherForecast";
 import WeatherForecast from "./Componnets/WeatherForecast"
+// import DropdownMenu from "./Components/DropdownMenu";
+// import WeatherForecast from "./Components/WeatherForecast";
+
 const cities = ["Ho Chi Minh", "Singapore", "Kuala Lumpur", "Tokyo", "Athens"];
 
 const App = () => {
@@ -15,31 +16,19 @@ const App = () => {
       if (selectedCity) {
         try {
           const apiKey = "eee3032eb92d5531511faf21cea0d3eb";
-         
-          // Fetch current weather data
-          const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&appid=${apiKey}&units=metric`
-          );
 
-          if (!response.ok) {
-            throw new Error("Failed to fetch current weather data");
-          }
-
-          const weatherData = await response.json();
-          console.log(weatherData);
-
-          // Fetch forecast data
+          // Fetch forecast data for the selected city
           const forecastResponse = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&appid=${apiKey}&units=metric`
           );
 
           if (!forecastResponse.ok) {
-            throw new Error("Failed to fetch forecast data")
+            throw new Error("Failed to fetch forecast data");
           }
 
-          const forecastData = await forecastResponse.json()
+          const forecastData = await forecastResponse.json();
 
-          
+          // Extract and format forecast data
           const formattedForecastData = forecastData.list
             .slice(0, 8)
             .map((item) => ({
@@ -51,8 +40,8 @@ const App = () => {
 
           setForecast(formattedForecastData);
         } catch (error) {
-          console.error("Error fetching weather data:", error.message)
-          alert("Failed to fetch weather data. Please try again later.")
+          console.error("Error fetching weather data:", error.message);
+          alert("Failed to fetch weather data. Please try again later.");
         }
       }
     };
@@ -66,16 +55,11 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<DropdownMenu cities={cities} onSelectCity={setSelectedCity} />}
+          element={
+            <DropdownMenu cities={cities} onSelectCity={setSelectedCity} />
+          }
         />
-        <Route
-          path="/forecast"
-          element={<Navigate to="/" />}
-        />
-        <Route
-          path="/forecast/:city"
-          element={<WeatherForecast forecast={forecast} />}
-        />
+        <Route path="/forecast/:city" element={<WeatherForecast />} />
       </Routes>
     </div>
   );
